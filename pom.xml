@@ -10,7 +10,7 @@
     </description>
     <url>https://github.com/evis/scalafix-maven-plugin</url>
     <groupId>io.github.evis</groupId>
-    <artifactId>scalafix-maven-plugin_${scala.major.version}</artifactId>
+    <artifactId>scalafix-maven-plugin_${scala.binary.version}</artifactId>
     <version>0.1.5_${scalafix.version}</version>
     <licenses>
         <license>
@@ -34,15 +34,15 @@
         <profile>
             <id>scala-2.12</id>
             <properties>
-                <scala.major.version>2.12</scala.major.version>
-                <scala.patch.version>15</scala.patch.version>
+                <scala.binary.version>2.12</scala.binary.version>
+                <scala.version>2.12.15</scala.version>
             </properties>
         </profile>
         <profile>
             <id>scala-2.13</id>
             <properties>
-                <scala.major.version>2.13</scala.major.version>
-                <scala.patch.version>7</scala.patch.version>
+                <scala.binary.version>2.13</scala.binary.version>
+                <scala.version>2.13.8</scala.version>
             </properties>
         </profile>
     </profiles>
@@ -51,10 +51,7 @@
         <maven-plugin-api.version>3.8.4</maven-plugin-api.version>
         <maven-plugin-annotations.version>3.6.2</maven-plugin-annotations.version>
         <maven-plugin-plugin.version>3.6.2</maven-plugin-plugin.version>
-        <scalafix.version>0.9.33</scalafix.version>
-        <scala.major.version>2.12</scala.major.version>
-        <scala.patch.version>15</scala.patch.version>
-        <scala.version>${scala.major.version}.${scala.patch.version}</scala.version>
+        <scalafix.version>0.9.34</scalafix.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
         <!-- java 8 is required for static interface
@@ -67,7 +64,7 @@
         <scalatest.version>3.0.9</scalatest.version>
         <scalatest-maven-plugin.version>2.0.2</scalatest-maven-plugin.version>
         <mvn-scalafmt.version>1.1.1640084764.9f463a9</mvn-scalafmt.version>
-        <semanticdb.version>4.4.31</semanticdb.version>
+        <semanticdb.version>4.5.1</semanticdb.version>
         <scala-cross-maven-plugin.version>0.3.0</scala-cross-maven-plugin.version>
     </properties>
     <packaging>maven-plugin</packaging>
@@ -134,7 +131,7 @@
                 <configuration>
                     <goalPrefix>scalafix</goalPrefix>
                     <mojoDependencies>
-                        <param>${groupId}:${artifactId}</param>
+                        <param>${project.groupId}:${project.artifactId}</param>
                     </mojoDependencies>
                 </configuration>
             </plugin>
@@ -209,13 +206,13 @@
             </plugin>
             <plugin>
                 <groupId>org.antipathy</groupId>
-                <artifactId>mvn-scalafmt_${scala.major.version}</artifactId>
+                <artifactId>mvn-scalafmt_${scala.binary.version}</artifactId>
                 <version>${mvn-scalafmt.version}</version>
             </plugin>
             <plugin>
                 <groupId>io.github.evis</groupId>
-                <artifactId>scalafix-maven-plugin_${scala.major.version}</artifactId>
-                <version>${version}</version>
+                <artifactId>scalafix-maven-plugin_${scala.binary.version}</artifactId>
+                <version>${project.version}</version>
             </plugin>
         </plugins>
     </build>
@@ -253,8 +250,13 @@
         </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_${scala.major.version}</artifactId>
+            <artifactId>scalatest_${scala.binary.version}</artifactId>
             <version>${scalatest.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
         </dependency>
     </dependencies>
 </project>
